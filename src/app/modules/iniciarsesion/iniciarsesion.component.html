@@ -1,0 +1,66 @@
+<body *ngIf="issloading==false">
+<div *ngIf="rol=='ND'">
+  <mat-card class="rol">
+    <mat-card-title>SELECCIONE QUIEN ES USTED</mat-card-title>
+    <mat-card-subtitle>¿Quien es?</mat-card-subtitle>
+    <mat-card-actions>
+      <mat-grid-list cols="3" rowHeight="4:4">
+        <mat-grid-tile style="background-color: aqua">
+          <button
+            style="background-image: url('../../../assets/images/administrador.png')" class="rolButtom" mat-stroked-button (click)="seleccionrol('AD')">ADMINISTRADOR</button>
+        </mat-grid-tile>
+        <mat-grid-tile style="background-color: aliceblue">
+          <button style="background-image: url('../../../assets/images/medico.png')" class="rolButtom" mat-stroked-button (click)="seleccionrol('DO')">DOCTOR</button>
+        </mat-grid-tile>
+        <mat-grid-tile style="background-color: coral">
+          <button class="rolButtom" style="background-image: url('../../../assets/images/examination.png')" mat-stroked-button (click)="seleccionrol('PA')">PACIENTE</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div *ngIf="rol=='AD'">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>ADMINISTRADOR</mat-card-title>
+      <mat-card-subtitle>ADMINISTRACÓN DEL SISTEMA</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h2>
+        El administrador solo podra acceder con credenciales UNICAS.
+      </h2>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="profileFormAdmin">
+        <p>CREDENCIALES:</p>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>CEDULA</mat-label>
+          <input matInput placeholder="Ex.02457416"  formControlName="cedula" [(ngModel)]="cedualaad">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>EMAIL</mat-label>
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput placeholder="pat@example.com" formControlName="email" [(ngModel)]="correoad">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>CONTRASEÑA</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="contrasena" [(ngModel)]="clavead">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-card-actions style="text-align: center">
+          <button  mat-raised-button color="accent" (click)="inicarSesionAdmin()" [disabled]="profileFormAdmin.invalid">INICAR SESION</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+</body>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+      <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

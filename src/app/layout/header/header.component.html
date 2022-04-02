@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<header>
+  <mat-toolbar [ngSwitch]="loging">
+    <span>Healthy Plus +</span>
+    <span class="example-spacer"></span>
+    <div class="example-button-container">
+      <button class="botton-header" mat-stroked-button color="accent">
+        <mat-icon>home</mat-icon>
+        CASA
+      </button>
+      <button class="botton-header" mat-stroked-button color="accent">
+        <mat-icon>fiber_new</mat-icon>
+        NOTICAS
+      </button>
+      <button class="botton-header" mat-stroked-button color="accent">
+        <mat-icon>import_contacts</mat-icon>
+        QUIENES SOMOS
+      </button>
+      <button class="botton-header" mat-stroked-button color="accent">
+        <mat-icon>contacts</mat-icon>
+        CONTACTENOS
+      </button>
+      <button mat-raised-button color="warn" [matMenuTriggerFor]="animals" *ngSwitchCase="'AD'">
+        <mat-icon>reorder</mat-icon>
+        ADMINISTRAR
+      </button>
+      <mat-menu #animals="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="sucural">SUCURSALES</button>
+        <button mat-menu-item [matMenuTriggerFor]="horarios">HORARIOS</button>
+        <button mat-menu-item [matMenuTriggerFor]="espacialidad">ESPECIALIDADES</button>
+        <button mat-menu-item [matMenuTriggerFor]="usuarios">USUARIOS</button>
+        <button mat-menu-item>VER MAS</button>
+      </mat-menu>
+      <mat-menu #sucural="matMenu">
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevesucursal','']">NUEVA SUCURSAL</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/versucursales']">VER SUCURSALES</button>
+      </mat-menu>
+      <mat-menu #horarios="matMenu">
+        <button mat-menu-item>NUEVO HORARIOS</button>
+        <button mat-menu-item>VER HORARIOS</button>
+      </mat-menu>
+      <mat-menu #espacialidad="matMenu">
+        <button mat-menu-item>NUEVA ESPACEILIDAD</button>
+        <button mat-menu-item>VER ESPECILIDADES</button>
+      </mat-menu>
+      <mat-menu #usuarios="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="medico">MEDICOS</button>
+        <button mat-menu-item [matMenuTriggerFor]="paciente">PACIENTE</button>
+      </mat-menu>
+      <mat-menu #medico="matMenu">
+        <button mat-menu-item>REGISTRAR MEDICO</button>
+        <button mat-menu-item>VER MEDICOS</button>
+      </mat-menu>
+      <mat-menu #paciente="matMenu">
+        <button mat-menu-item>VER PASIENTES</button>
+      </mat-menu>
+    </div>
+    <button *ngSwitchCase="'ND'"mat-button color="primary" [routerLink]="['/inicio/inicarsesion']">
+      <mat-icon>supervised_user_circle</mat-icon>
+      INICIAR SESION
+    </button>
+    <button *ngSwitchCase="'AD'" mat-button color="primary"  [matMenuTriggerFor]="user">
+      <mat-icon>supervised_user_circle</mat-icon>
+      {{usuario.nombres_completos}}
+    </button>
+    <mat-menu #user="matMenu">
+      <button mat-menu-item (click)="cerrarSesion()">
+        CERRAR SESIÓN
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</header>
+<body>
+<router-outlet></router-outlet>
+</body>
+<footer>
+  <mat-toolbar>
+    <span>My Applicatiodsfn</span>
+  </mat-toolbar>
+</footer>
+</html>
+
+

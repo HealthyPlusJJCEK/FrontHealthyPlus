@@ -1,0 +1,32 @@
+header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 4rem;
+}
+body{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  height: auto;
+}
+html{
+  background-color: dimgray;
+}
+footer{
+  position: fixed;
+  height: 4rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-button-container {
+  flex: 1 1 auto;
+}
+.botton-header{
+  margin-right: 10px;
+}
+
