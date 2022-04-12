@@ -5,13 +5,17 @@ header{
   right: 0;
   height: 4rem;
 }
+mat-toolbar{
+  background-color: #5b5050;
+}
+html{
+  background-image: url("src/assets/images/fondo.jpg");
+  background-size: cover;
+}
 body{
   padding-top: 4rem;
   padding-bottom: 4rem;
   height: auto;
-}
-html{
-  background-color: dimgray;
 }
 footer{
   position: fixed;

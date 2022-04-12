@@ -17,11 +17,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     try {
-      if(JSON.parse(sessionStorage['user']).length!=0){
+      if(JSON.parse(sessionStorage['user']).length!=""){
         this.usuario=JSON.parse(sessionStorage['user']);
         this.loging= this.usuario.rol
       }else {
         this.loging="ND";
+        this.router.navigate(['/inicio']);
         console.log(this.loging)
       }
     }catch (e){
@@ -30,6 +31,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+
+  editarCuentaPacinte(id:String){
+    this.router.navigate(['/inicio/inicarsesion/nuevopaciente',id])
+  }
+  editarCuentaDoctor(id:String){
+    this.router.navigate(['/inicio/inicarsesion/editarmedico',id])
+  }
 
   cerrarSesion(){
     sessionStorage.clear;

@@ -27,11 +27,12 @@
         <mat-icon>contacts</mat-icon>
         CONTACTENOS
       </button>
-      <button mat-raised-button color="warn" [matMenuTriggerFor]="animals" *ngSwitchCase="'AD'">
+      <!--ADMINISTRADOR-->
+      <button mat-raised-button color="warn" [matMenuTriggerFor]="option" *ngSwitchCase="'AD'">
         <mat-icon>reorder</mat-icon>
         ADMINISTRAR
       </button>
-      <mat-menu #animals="matMenu">
+      <mat-menu #option="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="sucural">SUCURSALES</button>
         <button mat-menu-item [matMenuTriggerFor]="horarios">HORARIOS</button>
         <button mat-menu-item [matMenuTriggerFor]="espacialidad">ESPECIALIDADES</button>
@@ -39,33 +40,64 @@
         <button mat-menu-item>VER MAS</button>
       </mat-menu>
       <mat-menu #sucural="matMenu">
-        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevesucursal','']">NUEVA SUCURSAL</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevesucursal','?']">NUEVA SUCURSAL</button>
         <button mat-menu-item [routerLink]="['/inicio/adminstradar/versucursales']">VER SUCURSALES</button>
       </mat-menu>
       <mat-menu #horarios="matMenu">
-        <button mat-menu-item>NUEVO HORARIOS</button>
-        <button mat-menu-item>VER HORARIOS</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevohorario','?']">NUEVO HORARIOS</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/verhorario']">VER HORARIOS</button>
       </mat-menu>
       <mat-menu #espacialidad="matMenu">
-        <button mat-menu-item>NUEVA ESPACEILIDAD</button>
-        <button mat-menu-item>VER ESPECILIDADES</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevoespacilidad','?']">NUEVA ESPACEILIDAD</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/verespacilidad']">VER ESPECILIDADES</button>
       </mat-menu>
       <mat-menu #usuarios="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="medico">MEDICOS</button>
         <button mat-menu-item [matMenuTriggerFor]="paciente">PACIENTE</button>
       </mat-menu>
       <mat-menu #medico="matMenu">
-        <button mat-menu-item>REGISTRAR MEDICO</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevomedico']">REGISTRAR MEDICO</button>
         <button mat-menu-item>VER MEDICOS</button>
       </mat-menu>
       <mat-menu #paciente="matMenu">
         <button mat-menu-item>VER PASIENTES</button>
       </mat-menu>
+      <!-- FIN ADMINISTRADOR-->
+      <!--PACIENTE-->
+      <button mat-raised-button color="accent" [matMenuTriggerFor]="citas" *ngSwitchCase="'PA'" style="margin-left: 5px">
+        Citas
+      </button>
+      <mat-menu #citas="matMenu">
+        <button mat-menu-item [routerLink]="['/inicio/inicarsesion/nuevacita',usuario.id]">Nueva citas</button>
+        <button mat-menu-item [routerLink]="['/inicio/inicarsesion/vercitas',usuario.id]">Ver citas enviadas</button>
+      </mat-menu>
+      <button mat-raised-button color="warn" [matMenuTriggerFor]="consultas" *ngSwitchCase="'PA'" style="margin-left: 5px">
+        Concultas
+      </button>
+      <mat-menu #consultas="matMenu">
+        <button mat-menu-item  [routerLink]="['/inicio/inicarsesion/verresultados',usuario.id]">Ver resultados de consultas</button>
+      </mat-menu>
+      <!-- FIN PACIENTE-->
+      <!--DOCTOR-->
+      <button mat-raised-button color="accent" [matMenuTriggerFor]="citasdo" *ngSwitchCase="'DO'" style="margin-left: 5px">
+        Citas y Consultas
+      </button>
+      <mat-menu #citasdo="matMenu">
+        <button mat-menu-item [routerLink]="['/inicio/inicarsesion/vercitas2',usuario.id]">Ver citas y generar consultas</button>
+      </mat-menu>
+      <button mat-raised-button color="warn" [matMenuTriggerFor]="consultasdo" *ngSwitchCase="'DO'" style="margin-left: 5px">
+        Concultas
+      </button>
+      <mat-menu #consultasdo="matMenu">
+        <button mat-menu-item  [routerLink]="['/inicio/inicarsesion/verconsulta',usuario.id]">Ver consultas relizadas</button>
+      </mat-menu>
+      <!-- FIN DOCTOR-->
     </div>
     <button *ngSwitchCase="'ND'"mat-button color="primary" [routerLink]="['/inicio/inicarsesion']">
       <mat-icon>supervised_user_circle</mat-icon>
       INICIAR SESION
     </button>
+    <!-- FIN ADMINISTRADOR-->
     <button *ngSwitchCase="'AD'" mat-button color="primary"  [matMenuTriggerFor]="user">
       <mat-icon>supervised_user_circle</mat-icon>
       {{usuario.nombres_completos}}
@@ -76,6 +108,39 @@
         <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-menu>
+    <!--FIN ADMINISTRADOR-->
+    <!-- FIN PACIENTE-->
+    <button *ngSwitchCase="'PA'" mat-button color="primary"  [matMenuTriggerFor]="userpa">
+      <mat-icon>supervised_user_circle</mat-icon>
+      {{usuario.nombres_completos}}
+    </button>
+    <mat-menu #userpa="matMenu">
+      <button mat-menu-item (click)="editarCuentaPacinte(usuario.id+'')">
+        CUENTA
+        <mat-icon>supervised_user_circle</mat-icon>
+      </button>
+      <button mat-menu-item (click)="cerrarSesion()">
+        CERRAR SESIÓN
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-menu>
+    <!-- FIN PACIENTE-->
+    <!-- DOCTOR-->
+    <button *ngSwitchCase="'DO'" mat-button color="primary"  [matMenuTriggerFor]="userdo">
+      <mat-icon>supervised_user_circle</mat-icon>
+      {{usuario.nombres_completos}}
+    </button>
+    <mat-menu #userdo="matMenu">
+      <button mat-menu-item (click)="editarCuentaDoctor(usuario.id+'')">
+        CUENTA
+        <mat-icon>supervised_user_circle</mat-icon>
+      </button>
+      <button mat-menu-item (click)="cerrarSesion()">
+        CERRAR SESIÓN
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-menu>
+    <!-- FIN DOCTOR-->
   </mat-toolbar>
 </header>
 <body>

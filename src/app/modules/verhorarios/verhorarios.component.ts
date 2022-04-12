@@ -1,69 +1,69 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HorarioService} from "../../service/horario.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Sucursal} from "../../models/sucursal";
-import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {SucursalService} from "../../service/sucursal.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import {MatSort} from "@angular/material/sort";
+import {Horarios} from "../../models/horarios";
 
 @Component({
-  selector: 'app-versucursales',
-  templateUrl: './versucursales.component.html',
-  styleUrls: ['./versucursales.component.css']
+  selector: 'app-verhorarios',
+  templateUrl: './verhorarios.component.html',
+  styleUrls: ['./verhorarios.component.css']
 })
-export class VersucursalesComponent implements OnInit {
+export class VerhorariosComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nombre', 'direccion', 'telefono','eliminar','editar'];
+  displayedColumns: string[] = ['id', 'dia', 'hora_inico', 'hora_final','eliminar','editar'];
   // @ts-ignore
-  dataSource: MatTableDataSource<Sucursal>;
+  dataSource: MatTableDataSource<Horarios>;
 
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private sucursalService:SucursalService,
-              private _snackBar: MatSnackBar,
-              private router:Router) { }
+  constructor(private _snackBar: MatSnackBar,
+              private router:Router,
+              private activatedRoute: ActivatedRoute,
+              private horarioService:HorarioService) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
-      this.listarSucursales()
+      this.listarHoarios();
     }else {
       this.router.navigate(['/inicio']);
     }
   }
-  listarSucursales(){
-    this.sucursalService.getSucursal().subscribe(value => {
+
+  listarHoarios(){
+    this.horarioService.getHorario().subscribe(value => {
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
   }
 
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-
-
-  eliminarSucursal(sucursal:Sucursal){
-    this.sucursalService.deleteSucursal(sucursal.id).subscribe(value => {
+  eliminarHorario(horario:Horarios){
+    this.horarioService.deleteHorario(horario.id).subscribe(value => {
       this._snackBar.open("Sucursal eliminada de forma exitosa", "",{
         duration: 1 * 1000,
       });
-      this.listarSucursales();
+      this.listarHoarios();
     },error => {
       this._snackBar.open("Sucursal no se elimino", "",{
         duration: 1 * 1000,
       });
     })
   }
-
 }

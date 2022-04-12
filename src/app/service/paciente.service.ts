@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Usuario} from "../models/usuario";
+import {map, Observable} from "rxjs";
+import {Paciente} from "../models/paciente";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PacienteService {
+
+  private urlEndPoint:string='http://localhost:8080/api/pacientes';
+  private httpHeaders = new HttpHeaders()
+
+  constructor(private http:HttpClient) { }
+
+
+  savePaciente(paciente: Paciente):Observable<Usuario>{
+    console.log(paciente);
+    return this.http.post<Paciente>(this.urlEndPoint,paciente)
+  }
+
+  updatePaciente(paciente: Paciente):Observable<Usuario>{
+    console.log(paciente);
+    return this.http.put<Paciente>(this.urlEndPoint,paciente)
+  }
+
+  deletePaciente(id?: Number){
+    return this.http.delete<Paciente>(this.urlEndPoint+'/'+id,{headers: this.httpHeaders})
+  }
+
+  getPaciente():Observable<Paciente[]>{
+    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Paciente[]))
+  }
+}

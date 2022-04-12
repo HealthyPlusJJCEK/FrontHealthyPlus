@@ -1,0 +1,21 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+  margin: 5px auto;
+  width: 900px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+.example-card {
+  margin: 5px auto;
+  max-width: 100%;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+mat-grid-tile {
+
+}

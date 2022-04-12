@@ -1,0 +1,135 @@
+<div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>RECOLECCIONDE DATOS</ng-template>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>DATOS DE CONSULTA</mat-card-title>
+            <mat-card-subtitle>Datos</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="4:1">
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Motivo</mat-label>
+                  <input matInput formControlName="motivo" placeholder="Placeholder" [(ngModel)]="consulta.motivo">
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Precion Arterial</mat-label>
+                  <input matInput formControlName="precion" placeholder="Placeholder" [(ngModel)]="consulta.presion_arterial">
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Frecuencia Cardiaca</mat-label>
+                  <input matInput type="number" formControlName="frecu" class="example-right-align" placeholder="0" [(ngModel)]="consulta.frecuencia_cardaica">
+                  <span matPrefix>lbs&nbsp;</span>
+                  <span matSuffix></span>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Temperatura</mat-label>
+                  <input matInput type="number" formControlName="tempe" class="example-right-align" placeholder="0" [(ngModel)]="consulta.temperatura">
+                  <span matPrefix>ªc&nbsp;</span>
+                  <span matSuffix></span>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Talla</mat-label>
+                  <input matInput type="number" formControlName="talla" class="example-right-align" placeholder="0" [(ngModel)]="consulta.talla">
+                  <span matPrefix>cm&nbsp;</span>
+                  <span matSuffix></span>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Peso</mat-label>
+                  <input matInput type="number" formControlName="peso" class="example-right-align" placeholder="0" [(ngModel)]="consulta.peso">
+                  <span matPrefix>kg&nbsp;</span>
+                  <span matSuffix></span>
+                </mat-form-field>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+          </mat-card-actions>
+        </mat-card>
+        <div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="DATOS IMPARTANTES">
+      <form [formGroup]="secondFormGroup">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>DATOS DE CONSULTA</mat-card-title>
+            <mat-card-subtitle>Datos</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="3.5:1">
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Enfermedad</mat-label>
+                  <textarea matInput formControlName="enfermedad" [(ngModel)]="enfermedad.nombre"></textarea>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Diagnostico</mat-label>
+                  <textarea matInput formControlName="diagnos" [(ngModel)]="diagnostico.descripcion"></textarea>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Tratamiento Procesos</mat-label>
+                  <textarea matInput formControlName="proce" [(ngModel)]="tratamiento.procedimiento"></textarea>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Tratamiento Descripción</mat-label>
+                  <textarea matInput formControlName="descri" [(ngModel)]="tratamiento.descripcion"></textarea>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="2">
+                <mat-form-field appearance="outline" style="width: 100%; margin-left: 2px">
+                  <mat-label>Conclusión</mat-label>
+                  <textarea matInput formControlName="conclu" [(ngModel)]="consulta.conclusion"></textarea>
+                </mat-form-field>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-raised-button color="primary" matStepperNext>Siguete</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>CONFIRMACIÓN</ng-template>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>CONFIRMACIÓN</mat-card-title>
+          <mat-card-subtitle>Datos</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          Guardar consulta e imprimir consulta
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-raised-button color="accent" (click)="guardarConsulta()">GUARDAR E IMPRIMIR CONSULTA </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+  </mat-stepper>
+</div>
+

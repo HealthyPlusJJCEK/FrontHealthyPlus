@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Ver citas</mat-card-title>
+        <mat-card-subtitle>Ver citas agendadas</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
+              <td mat-cell *matCellDef="let row">
+                <div *ngFor="let hora of row.horarios">
+                  <div *ngIf="hora.dia>dia && row.estado=='PN'; else thenBlock">
+                    <div *ngIf="row.estado=='PN'">
+                      PENDIENTE
+                    </div>
+                    <div *ngIf="row.estado=='CO'">
+                      CONSULTADO
+                    </div>
+                  </div>
+                  <ng-template #thenBlock>
+                    <div>
+                      CADUCADO
+                    </div>
+                  </ng-template>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="medico">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> DIRECCIÓN </th>
+              <td mat-cell *matCellDef="let row">
+                <div *ngFor="let met of row.medico">
+                  {{met.title}}
+                  <div *ngFor="let suc of met.sucursal">
+                    {{suc.direccion}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="horarios">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> HORARIOS </th>
+              <td mat-cell *matCellDef="let row">
+                <div *ngFor="let hora of row.horarios">
+                  <div>Dias: {{hora.dia | date:'fullDate'}}</div>
+                  <div>Desde: {{hora.hora_inico}} hasta {{hora.hora_final}}</div>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="realizar">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> REALIZER CONSULTA </th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-flat-button color="warn" [disabled]="(row.estado=='CO')" [routerLink]="['/inicio/inicarsesion/nuevaconsulta',row.id]">
+                  RELIZAR CONSULTA</button>
+              </td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="obtener">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> OBTNER CERTIFICADO </th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-flat-button color="accent">
+                  OBTNER CERTIFICADO</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

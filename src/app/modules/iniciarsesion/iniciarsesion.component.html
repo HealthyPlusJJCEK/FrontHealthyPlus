@@ -58,6 +58,73 @@
     </mat-card-content>
   </mat-card>
 </div>
+<div *ngIf="rol=='DO'">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar style="background-image: url('assets/images/medico.png'); background-size: cover"></div>
+      <mat-card-title>MEDICOS</mat-card-title>
+      <mat-card-subtitle>MEDICOS DEL SISTEMA</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h2>
+        Si es medico, y accede por primera vez, debera actualizar sus datos, ingresar una nueva clave.
+      </h2>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="profileFormDoctor">
+        <p>CREDENCIALES:</p>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>CEDULA</mat-label>
+          <input matInput placeholder="Ex.02457416"  formControlName="cedula" [(ngModel)]="cedualaad">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>CONTRASEÑA</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="contrasena" [(ngModel)]="clavead">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-card-actions style="text-align: center">
+          <button  mat-raised-button color="accent" (click)="inicarSesionDoctores()" [disabled]="profileFormDoctor.invalid">INICAR SESION</button>
+        </mat-card-actions>
+        <p>Si olvido su clave contacte son el Administrador</p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="rol=='PA'">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar style="background-image: url('assets/images/medico.png'); background-size: cover"></div>
+      <mat-card-title>PACIENTE</mat-card-title>
+      <mat-card-subtitle>PACIENTES DEL SISTEMA</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="profileFormPaciente">
+        <p>CREDENCIALES:</p>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>EMAIL</mat-label>
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput placeholder="pat@example.com" formControlName="email" [(ngModel)]="correoad">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>CONTRASEÑA</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="contrasena" [(ngModel)]="clavead">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-card-actions style="text-align: center">
+          <button  mat-raised-button color="accent" (click)="inicarSesionPaciente()" [disabled]="profileFormPaciente.invalid">INICAR SESION</button>
+        </mat-card-actions>
+      </form>
+      <p>Si no tiene cuenta, <button mat-button color="accent" (click)="nuevopaciente()">Registrese aquí</button></p>
+    </mat-card-content>
+  </mat-card>
+</div>
 </body>
 <ng-container *ngIf="issloading">
   <div class="bss-loader" style="margin: 0 auto;">

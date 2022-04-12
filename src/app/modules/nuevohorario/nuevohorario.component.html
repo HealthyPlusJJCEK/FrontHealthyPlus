@@ -1,0 +1,33 @@
+<div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Nueva horario</mat-card-title>
+      <mat-card-subtitle>Resgistro de horarios</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="profileForm">
+      <mat-card-content>
+        <p>Hoarios:</p>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Dia</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dia" [(ngModel)]="horario.dia">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        Desde:
+        <mat-form-field appearance="outline" style="width: 40%">
+          <mat-label>Hora 1</mat-label>
+          <input type="time" matInput formControlName="horauno" [(ngModel)]="horario.hora_inico">
+        </mat-form-field>
+        Hasta:
+        <mat-form-field appearance="outline" style="width: 40%">
+          <mat-label>Hora 2</mat-label>
+          <input type="time" matInput  formControlName="horados" [(ngModel)]="horario.hora_final">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions style="text-align: center">
+        <button mat-raised-button color="warn"  (click)="guardarHoarios(horario)" [disabled]="profileForm.invalid">GUARDAR HORARIO</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+

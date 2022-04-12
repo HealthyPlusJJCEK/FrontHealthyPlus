@@ -19,14 +19,18 @@ export class NuevasucursalComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
-      if(id!=""){
-        this.sucursalService.getSucursal().subscribe(value => {
-          this.sucursal=value.filter(value1 => value1.id==id)[0];
-        })
-      }
-    })
+    if(JSON.parse(sessionStorage['user']).length!=""){
+      this.activatedRoute.params.subscribe(params => {
+        let id = params['id']
+        if(id!="?"){
+          this.sucursalService.getSucursal().subscribe(value => {
+            this.sucursal=value.filter(value1 => value1.id==id)[0];
+          })
+        }
+      })
+    }else {
+      this.router.navigate(['/inicio']);
+    }
   }
 
 

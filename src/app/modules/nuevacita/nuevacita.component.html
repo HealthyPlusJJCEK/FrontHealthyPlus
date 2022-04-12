@@ -1,0 +1,132 @@
+<div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Seleecion de espacialidad</ng-template>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>ESPACIALIDAD</mat-card-title>
+            <mat-card-subtitle>Seleccione la espacilidad</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #shoes [multiple]="false" formControlName="firstCtrl" (selectionChange)="selectEspacilidad($event)">
+              <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+                <mat-list-option *ngFor="let shoe of espacilidad" [value]="shoe">
+                  {{shoe.descripcion}}
+                </mat-list-option>
+              </cdk-virtual-scroll-viewport>
+            </mat-selection-list>
+            <p>
+              Espacilidad seleccionada: {{shoes.selectedOptions.selected[0]?.value.descripcion}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" matStepperNext>Siguente</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Seleccion de medico">
+      <form [formGroup]="secondFormGroup">
+        <mat-card class="" style="width: 95%;margin: 5px auto;">
+          <mat-card-header>
+            <mat-card-title>MEDICO</mat-card-title>
+            <mat-card-subtitle>SELECIONE EL MEDICO</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #medico [multiple]="false" formControlName="secondCtrl" (selectionChange)="selectDoctor($event)">
+              <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+                <mat-list-option *ngFor="let medico of medicos" [value]="medico" style="height: max-content">
+                  <mat-grid-list cols="2" rowHeight="2:1">
+                    <mat-grid-tile>
+                      <img src="assets/images/medico.png" style="height: 100px; width: 100px">
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                      <div *ngFor="let sucur of medico.sucursal">
+                        Titulo: {{medico.titulo}} ||
+                        SUCURSAL: Nombre: {{sucur.nombre}}
+                        --Direccion: {{sucur.direccion}} --Telefono: {{sucur.telefono}}
+                      </div>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-list-option>
+              </cdk-virtual-scroll-viewport>
+            </mat-selection-list>
+            <p>
+              Mas información: <br>
+              NOMBRES COMPLETOS: {{usuarioMedico.nombres_completos}} <br>
+              CORREO: {{usuarioMedico.correo}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button matStepperPrevious color="warn">Atras</button>
+            <button mat-raised-button matStepperNext color="accent">Siguente</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirhFormGroup">
+      <form [formGroup]="thirhFormGroup">
+        <ng-template matStepLabel>Seleccion de hoarios</ng-template>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>SELECIONE EL HORARIO</mat-card-title>
+            <mat-card-subtitle>HORARIOS DISPONIBLES DEL MEDICO</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #horario [multiple]="false" formControlName="thirhCtrl" (selectionChange)="selectHoraios($event)">
+              <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+                <mat-list-option *ngFor="let horario of medicoSelect.horarios" [value]="horario">
+                  Dia: {{horario.dia | date:'fullDate'}} DESDE:{{horario.hora_inico}} HASTA:{{horario.hora_final}}
+                </mat-list-option>
+              </cdk-virtual-scroll-viewport>
+            </mat-selection-list>
+            <p>
+              Espacilidad seleccionada: {{horario.selectedOptions.selected[0]?.value.dia | date:'fullDate'}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button matStepperPrevious color="warn">Atras</button>
+            <button mat-raised-button matStepperNext color="accent">Siguente</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirmacion</ng-template>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Informacion Final</mat-card-title>
+          <mat-card-subtitle>Confitmacion de datos</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <strong>Información de cita general:</strong>
+          <div class="cabecera">
+            <div class="izquierda">
+              <p>PACIENTE:</p>
+              <p>Nombre: {{usuarioPaciente.nombres_completos}}</p>
+              <p>Telefono: {{usuarioPaciente.telefono}}</p>
+              <p>MEDICO:</p>
+              <p>Nombre: {{usuarioMedico.nombres_completos}}</p>
+              <p>Correo: {{usuarioMedico.correo}}</p>
+              <p *ngFor="let suc of medicoSelect.especialidad">Especilidad: {{suc.descripcion}}</p>
+              <p>Titulo: {{medicoSelect.titulo}}</p>
+            </div>
+            <div class="derecha">
+              <p>DIRECCION:</p>
+              <p *ngFor="let suc of medicoSelect.sucursal ">Sucursal: {{suc.nombre}}</p>
+              <p *ngFor="let suc of medicoSelect.sucursal ">Dirección: {{suc.direccion}}</p>
+              <p>HORARIOS:</p>
+              <p>Dia: {{horarioSelect.dia | date:'fullDate'}}</p>
+              <p>Hora: Desde: {{horarioSelect.hora_inico}} hasta {{horarioSelect.hora_final}}</p>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button matStepperPrevious color="warn">Atras</button>
+          <button mat-raised-button color="primary" (click)="guardarCita()">ENVIAR CITA</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+  </mat-stepper>
+</div>
