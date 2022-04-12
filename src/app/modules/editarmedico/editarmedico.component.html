@@ -63,10 +63,9 @@
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-form-field appearance="outline" style="width: 100%; margin-left: 5px" >
+          <mat-form-field appearance="outline" style="width: 100%; margin-left: 5px">
             <mat-label>Titulo</mat-label>
-            <ngx-mat-file-input accept="application/pdf"  formControlName="titulo"  placeholder="Subir Documento"></ngx-mat-file-input>
-            <mat-icon matSuffix>folder</mat-icon>
+            <input matInput placeholder="Ex.Americas"  formControlName="direccion" [(ngModel)]="medico.titulo.nombre_titulo">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
