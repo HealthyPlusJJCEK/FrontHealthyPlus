@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+  font-size: large;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    margin: 0;
+  }
+
+#cuidado{
+    background-color: rgb(255,255,255);
+}
+#cuidado .container{
+    text-align: center;
+    padding: 200px 12px;
+}
+@media (min-width: 850px){
+
+
+    #cuidado .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #cuidado .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #cuidado h2{
+        margin-top: 0px;
+    }
+
+    #cuidado .img-container{
+        background-image: url("https://www.elhospital.com/documenta/imagenes/139453/AMP-Hospital-en-Costa-Rica-tiene-nueva-sala-de-Cuidados-Intensivos-Quirurgicos.jpg");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px;
+    }
+
+
+  }

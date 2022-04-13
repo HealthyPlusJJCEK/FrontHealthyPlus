@@ -26,7 +26,7 @@ export class UsuarioService {
   }
 
   deleteUsuario(id?: Number){
-    return this.http.delete<Usuario>(this.urlEndPoint+'/'+id,{headers: this.httpHeaders})
+    return this.http.delete<Usuario>(this.urlEndPoint+'/'+id)
   }
 
   getUsuarios():Observable<Usuario[]>{

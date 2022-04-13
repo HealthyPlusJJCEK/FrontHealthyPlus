@@ -1,0 +1,28 @@
+<div *ngIf="issloading==false">
+  <section id="quirofano">
+    <div class="container">
+      <div class="img-container"></div>
+      <div class="texto">
+
+        <h2>Quirófanos</h2>
+        <p>HealthyPlus cuenta con renovadas áreas de quirófanos equipados con tecnología de punta para cada especialidad, además al ser una institución con calificación de Nivel III permite al Staff Médico realizar cirugías de alta complejidad para diferentes patologías como:
+
+          Cirugías de corazón
+          Neurocirugías
+          Cirugía general
+          Cirugías Estéticas y Reconstructivas
+          Gineco-obstetricia (partos, cesareas)
+          Cirugía Vascular
+          Endoscopia
+          Traumatología
+        </p>
+      </div>
+    </div>
+
+  </section>
+</div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

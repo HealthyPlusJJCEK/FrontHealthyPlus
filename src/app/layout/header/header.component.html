@@ -8,22 +8,24 @@
 </head>
 <header>
   <mat-toolbar [ngSwitch]="loging">
-    <span>Healthy Plus +</span>
+    <img src="assets/images/HealthyPlusV2.png" width="40px" style="margin-right: 2px">
+    <span [routerLink]="['/inicio']">Healthy Plus</span>
+    <strong style="margin-left: 2px; color: #77d977; font-size: x-large">+</strong>
     <span class="example-spacer"></span>
     <div class="example-button-container">
-      <button class="botton-header" mat-stroked-button color="accent">
+      <button class="botton-header" mat-stroked-button color="accent" [routerLink]="['/inicio']">
         <mat-icon>home</mat-icon>
         CASA
       </button>
-      <button class="botton-header" mat-stroked-button color="accent">
+      <button class="botton-header" mat-stroked-button color="accent" [routerLink]="['/inicio/noticias']">
         <mat-icon>fiber_new</mat-icon>
         NOTICAS
       </button>
-      <button class="botton-header" mat-stroked-button color="accent">
+      <button class="botton-header" mat-stroked-button color="accent" [routerLink]="['/inicio/quienes-somos']">
         <mat-icon>import_contacts</mat-icon>
         QUIENES SOMOS
       </button>
-      <button class="botton-header" mat-stroked-button color="accent">
+      <button class="botton-header" mat-stroked-button color="accent" [routerLink]="['/inicio/contactanos']">
         <mat-icon>contacts</mat-icon>
         CONTACTENOS
       </button>
@@ -57,10 +59,10 @@
       </mat-menu>
       <mat-menu #medico="matMenu">
         <button mat-menu-item [routerLink]="['/inicio/adminstradar/nuevomedico']">REGISTRAR MEDICO</button>
-        <button mat-menu-item>VER MEDICOS</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/vermedico']">VER MEDICOS</button>
       </mat-menu>
       <mat-menu #paciente="matMenu">
-        <button mat-menu-item>VER PASIENTES</button>
+        <button mat-menu-item [routerLink]="['/inicio/adminstradar/verpaciente']">VER PASIENTES</button>
       </mat-menu>
       <!-- FIN ADMINISTRADOR-->
       <!--PACIENTE-->

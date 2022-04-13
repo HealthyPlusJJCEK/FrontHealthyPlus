@@ -1,0 +1,38 @@
+<div *ngIf="issloading==false">
+  <body>
+  <section id="quienes">
+    <div class="container">
+      <div class="img-container"></div>
+      <div class="texto">
+
+        <h2>Mision</h2>
+        <p>Colaborar para mejorar la salud y la calidad de vida de los ciudadanos, ofertando servicios sanitarios excelentes<br>
+          con el paciente como centro de nuestra atención, y profesionales altamente calificados<br>
+          brindando servicios de Salud con eficacia, eficiencia y calidez para mejorar la calidad de vida de nuestros pacientes<br>
+          con capacidad y conocimiento de nuestro personal médico, asistencial y administrativo.</p>
+        <h2>Visión</h2>
+        <p>Ser Líderes en el sector de la salud a nivel regional con posicionamiento nacional.</p>
+        <h2>Valores</h2>
+        <p>
+          Ética Institucional.<br>
+          Respeto a la vida, integridad del ser humano y a los derechos de los pacientes.<br>
+          Liderazgo integrador con innovación.<br>
+          Honestidad y Transparencia en su gestión.<br>
+          Trabajo en equipo con responsabilidad y solidaridad.<br>
+        </p>
+
+      </div>
+    </div>
+
+  </section>
+
+  </body>
+</div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>
+
+
+

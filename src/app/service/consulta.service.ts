@@ -10,19 +10,22 @@ import {Consultas, Diagnostico} from "../models/consultas";
 export class ConsultaService {
 
   private urlEndPoint:string='http://localhost:8080/api/consultas';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
+  })
 
   constructor(private http:HttpClient) { }
 
 
   saveConsultas(consultas: Consultas):Observable<Consultas>{
     console.log(consultas);
-    return this.http.post<Consultas>(this.urlEndPoint,consultas)
+    return this.http.post<Consultas>(this.urlEndPoint,consultas,{headers: this.httpHeaders})
   }
 
   updateConsultas(consultas: Consultas):Observable<Consultas>{
     console.log(consultas);
-    return this.http.put<Consultas>(this.urlEndPoint,consultas)
+    return this.http.put<Consultas>(this.urlEndPoint,consultas,{headers: this.httpHeaders})
   }
 
   deleteConsultas(id?: Number){
@@ -30,6 +33,6 @@ export class ConsultaService {
   }
 
   getConsultas():Observable<Consultas[]>{
-    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Consultas[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Consultas[]))
   }
 }

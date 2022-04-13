@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    margin: 0;
+  }
+
+#quienes{
+    background-color: rgb(255,255,255);
+}
+#quienes .container{
+    text-align: center;
+    padding: 200px 12px;
+}
+@media (min-width: 850px){
+
+
+    #quienes .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #quienes .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #quienes h2{
+        margin-top: 0px;
+    }
+
+    #quienes .img-container{
+        background-image: url("https://cdn2.hubspot.net/hubfs/4147632/Doctor%20con%20un%20paciente%20utilizando%20vocabulario%20en%20ingle%CC%81s%20me%CC%81dico..png");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px;
+    }
+
+
+  }

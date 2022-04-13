@@ -10,13 +10,12 @@ import {Paciente} from "../models/paciente";
 export class PacienteService {
 
   private urlEndPoint:string='http://localhost:8080/api/pacientes';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({})
 
   constructor(private http:HttpClient) { }
 
 
   savePaciente(paciente: Paciente):Observable<Usuario>{
-    console.log(paciente);
     return this.http.post<Paciente>(this.urlEndPoint,paciente)
   }
 
@@ -26,7 +25,7 @@ export class PacienteService {
   }
 
   deletePaciente(id?: Number){
-    return this.http.delete<Paciente>(this.urlEndPoint+'/'+id,{headers: this.httpHeaders})
+    return this.http.delete<Paciente>(this.urlEndPoint+'/'+id)
   }
 
   getPaciente():Observable<Paciente[]>{

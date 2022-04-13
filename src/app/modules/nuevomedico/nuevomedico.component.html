@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="issloading==false">
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -17,6 +17,11 @@
             <mat-form-field appearance="outline" style="width: 100%">
               <mat-label>Ingrese la cédula del medico</mat-label>
               <input matInput placeholder="Placeholder" formControlName="cedula" [(ngModel)]="usuarios.cedula">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Ingrese el correo del medico</mat-label>
+              <input matInput placeholder="Placeholder" formControlName="correo" [(ngModel)]="usuarios.correo">
               <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%">
@@ -155,3 +160,8 @@
   </mat-stepper>
 </div>
 
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

@@ -25,15 +25,22 @@ export class NuevasucursalComponent implements OnInit {
         if(id!="?"){
           this.sucursalService.getSucursal().subscribe(value => {
             this.sucursal=value.filter(value1 => value1.id==id)[0];
+            this.issloading=false;
           })
         }
+        this.issloading=false;
       })
     }else {
       this.router.navigate(['/inicio']);
     }
   }
 
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
 
+    },1000)
+  }
   profileForm = new FormGroup({
     nombre: new FormControl('',Validators.required),
     direccion: new FormControl('',Validators.required),

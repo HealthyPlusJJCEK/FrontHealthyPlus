@@ -10,19 +10,22 @@ import {Sucursal} from "../models/sucursal";
 export class SucursalService {
 
   private urlEndPoint:string='http://localhost:8080/api/sucursales';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
+  })
 
   constructor(private http:HttpClient) { }
 
 
   saveSucursal(sucursal: Sucursal):Observable<Usuario>{
     console.log(sucursal);
-    return this.http.post<Sucursal>(this.urlEndPoint,sucursal)
+    return this.http.post<Sucursal>(this.urlEndPoint,sucursal,{headers: this.httpHeaders})
   }
 
   updateSucursal(sucursal: Sucursal):Observable<Usuario>{
     console.log(sucursal);
-    return this.http.put<Sucursal>(this.urlEndPoint,sucursal)
+    return this.http.put<Sucursal>(this.urlEndPoint,sucursal,{headers: this.httpHeaders})
   }
 
   deleteSucursal(id?: Number){
@@ -30,6 +33,6 @@ export class SucursalService {
   }
 
   getSucursal():Observable<Sucursal[]>{
-    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Sucursal[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Sucursal[]))
   }
 }

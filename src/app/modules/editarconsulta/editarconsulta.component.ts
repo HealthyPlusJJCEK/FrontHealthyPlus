@@ -53,7 +53,7 @@ export class EditarconsultaComponent implements OnInit {
             this.tratamiento=this.consulta.tratamiento;
             // @ts-ignore
             this.enfermedad=this.consulta.enfermedad;
-
+            this.issloading=false;
           })
         }
       })
@@ -76,6 +76,12 @@ export class EditarconsultaComponent implements OnInit {
     }else {
       this.router.navigate(['/inicio']);
     }
+  }
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+
+    },1000)
   }
 
   guardarConsulta(){

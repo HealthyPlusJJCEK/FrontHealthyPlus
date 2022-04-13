@@ -1,0 +1,30 @@
+<div *ngIf="issloading==false">
+  <body>
+  <section id="hospitalizacion">
+    <div class="container">
+      <div class="img-container"></div>
+      <div class="texto">
+
+        <h2>Hospitaizacion</h2>
+        <p>HealthyPlus pone a disposición de la ciudadanía sus habitaciones totalmente equipadas con el objetivo de acoplarse a las necesidades del paciente.
+
+          Distribución de las habitaciones:
+
+          Habitaciones individuales.
+          Habitaciones dobles.
+          Habitaciones suites (todos los servicios básicos más sala de espera y frigo bar).
+          Habitaciones VIP (todos los servicios más tres camas para acompañantes, una oficina, frigo bar y wi-fi).
+          Todas las habitaciones tienen atención médica y de enfermería las 24 horas para cuidar la salud integral del paciente. Para brindarle mayor comodidad durante su estadía, el Hospital Santa Inés cuenta con un departamento de hotelería encargado de guiarle durante los procesos de hospitalización.</p>
+      </div>
+    </div>
+  </section>
+  </body>
+</div>
+
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>
+
+

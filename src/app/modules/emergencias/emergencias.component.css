@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+  font-size: large;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    margin: 0;
+  }
+
+#emergencias{
+    background-color: rgb(255,255,255);
+}
+#emergencias .container{
+    text-align: center;
+    padding: 200px 12px;
+}
+@media (min-width: 850px){
+
+
+    #emergencias .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #emergencias .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #emergencias h2{
+        margin-top: 0px;
+    }
+
+    #emergencias .img-container{
+        background-image: url("https://www.eluniverso.com/resizer/-sfNYzltD_J979cmAcZzRoGYo48=/1033x670/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/ABNUL53M4VFKDJ2DTEADTZKXM4.jpg");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px;
+    }
+
+
+  }

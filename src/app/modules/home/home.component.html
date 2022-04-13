@@ -1,8 +1,105 @@
-<div>
-  Hskdflñkds
+<div *ngIf="issloading==false">
+  <body>
+
+  <section id="hero">
+    <h1>HealthyPlus<br></h1>
+    <h3><br>Cuidamos tu salud</h3>
+
+  </section>
+
+  <section id="somos-healthy">
+    <div class="container">
+      <div class="img-container"></div>
+      <div class="texto">
+
+        <h2><span class="color-acento">HealthyPlus!</span></h2>
+        <p>Brindar Servicios de Salud con eficacia, eficiencia y calidez para mejorar la calidad de vida de nuestros pacientes, a través de medicina basada en evidencia con capacidad y conocimiento de nuestro personal médico, asistencial y administrativo</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="nuestros-servicios">
+    <div class="container">
+      <h2>Nuestros Servicios</h2>
+      <div class="programas">
+        <div class="carta">
+          <h3>Hospitaizacion</h3>
+
+          <button [routerLink]="['/inicio/hospitalizacion']">+ Info</button>
+
+        </div>
+        <div class="carta">
+          <h3>Quirofano</h3>
+
+          <button [routerLink]="['/inicio/quirofano']">+ Info</button>
+
+        </div>
+
+        <div class="carta">
+          <h3>Emergencia</h3>
+          <button [routerLink]="['/inicio/emergencias']">+ Info</button>
+        </div>
+        <div class="carta">
+          <h3>Unidad de cuidados intensivos</h3>
+          <button [routerLink]="['/inicio/cuidado-intensivo']">+ Info</button>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas">
+    <div class="container">
+      <ul>
+        <li>✔️ Personal 100% capacitado</li>
+        <li>✔️ Flexibilidad de horarios</li>
+        <li>✔️ Equipos de ultima tecnologia<br>
+          para la atencion medica</li>
+        <li>✔️ Asistencia perzoanlizada</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="final">
+    <h1>Especialidades</h1>
+    <table>
+      <tr>
+        <td>CARDIOLOGIA</td>
+        <td>UROLOGIA</td>
+        <td>PEDIATRIA</td>
+        <td>TRAUMATOLOGIAL</td>
+      </tr>
+      <tr>
+        <td><img src="../assets/images/cardiologias.png"></td>
+        <td><img src="../assets/images/rinon.png"></td>
+        <td><img src="../assets/images/bebe.png"></td>
+        <td><img src="../assets/images/hueso.png"></td>
+
+      </tr>
+
+      <tr>
+        <td>NEUROLOGIA</td>
+        <td>ODONTOLOGIA</td>
+        <td>RAYOS X</td>
+      </tr>
+      <tr>
+        <td><img src="../assets/images/cerebro.png"></td>
+        <td><img src="../assets/images/dentista.png"></td>
+        <td><img src="../assets/images/rayos-x.png"></td>
+
+      </tr>
+
+    </table>
+
+  </section>
+  </body>
 </div>
 <ng-container *ngIf="issloading">
-  <div class="bss-loader">
-    <mat-spinner color="warn"></mat-spinner>
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
   </div>
 </ng-container>
+

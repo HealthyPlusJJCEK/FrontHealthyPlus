@@ -9,4 +9,5 @@ export class Usuario {
   correo?:String;
   clave?:String;
   rol?:String;
+  token?:String;
 }

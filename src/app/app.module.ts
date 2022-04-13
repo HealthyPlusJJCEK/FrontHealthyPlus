@@ -27,6 +27,15 @@ import { NuevaconsultaComponent } from './modules/nuevaconsulta/nuevaconsulta.co
 import { VerconsultasComponent } from './modules/verconsultas/verconsultas.component';
 import { EditarconsultaComponent } from './modules/editarconsulta/editarconsulta.component';
 import { Verconsultas2Component } from './modules/verconsultas2/verconsultas2.component';
+import {HospitalizacionComponent} from "./modules/hospitalizacion/hospitalizacion.component";
+import {QuirofanoComponent} from "./modules/quirofano/quirofano.component";
+import {EmergenciasComponent} from "./modules/emergencias/emergencias.component";
+import {NoticiasComponent} from "./modules/noticias/noticias.component";
+import {ContactoComponent} from "./modules/contacto/contacto.component";
+import {QuienesSomosComponent} from "./modules/quienes-somos/quienes-somos.component";
+import {CuidadoIntensivoComponent} from "./modules/cuidado-intensivo/cuidado-intensivo.component";
+import { VermedicosComponent } from './modules/vermedicos/vermedicos.component';
+import { VerpacientesComponent } from './modules/verpacientes/verpacientes.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent,  pathMatch: 'full'},
@@ -46,7 +55,16 @@ const routes: Routes = [
   { path: 'inicio/inicarsesion/nuevaconsulta/:id', component: NuevaconsultaComponent},
   { path: 'inicio/inicarsesion/verconsulta/:id', component: VerconsultasComponent},
   { path: 'inicio/inicarsesion/editarconsulta/:id', component: EditarconsultaComponent},
-  { path: 'inicio/inicarsesion/verresultados/:id', component: Verconsultas2Component}
+  { path: 'inicio/inicarsesion/verresultados/:id', component: Verconsultas2Component},
+  { path: 'inicio/hospitalizacion', component: HospitalizacionComponent},
+  { path: 'inicio/emergencias', component: EmergenciasComponent},
+  { path: 'inicio/quirofano', component: QuirofanoComponent},
+  { path: 'inicio/cuidado-intensivo', component: CuidadoIntensivoComponent},
+  { path: 'inicio/quienes-somos', component:QuienesSomosComponent},
+  { path: 'inicio/contactanos', component: ContactoComponent},
+  { path: 'inicio/noticias', component:NoticiasComponent},
+  { path: 'inicio/adminstradar/vermedico', component:VermedicosComponent},
+  { path: 'inicio/adminstradar/verpaciente', component:VerpacientesComponent}
 ];
 
 @NgModule({
@@ -70,7 +88,16 @@ const routes: Routes = [
     NuevaconsultaComponent,
     VerconsultasComponent,
     EditarconsultaComponent,
-    Verconsultas2Component
+    Verconsultas2Component,
+    HospitalizacionComponent,
+    QuirofanoComponent,
+    EmergenciasComponent,
+    CuidadoIntensivoComponent,
+    QuienesSomosComponent,
+    NoticiasComponent,
+    ContactoComponent,
+    VermedicosComponent,
+    VerpacientesComponent
   ],
     imports: [
         BrowserModule,
@@ -80,7 +107,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         ReactiveFormsModule,
         FormsModule,
-        MaterialFileInputModule,
+        MaterialFileInputModule
     ],
   providers: [],
   bootstrap: [AppComponent]

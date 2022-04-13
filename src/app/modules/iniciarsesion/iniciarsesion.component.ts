@@ -125,7 +125,7 @@ export class IniciarsesionComponent implements OnInit {
           sessionStorage.clear;
           sessionStorage.setItem('user', JSON.stringify(this.usuario));
           this.issloading=true;
-          if(this.usuario.correo!=null){
+          if(this.usuario.nombres_completos!=null){
             this.router.navigate(['/inicio']).then(() => {
               window.location.reload();
             });

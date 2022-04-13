@@ -11,19 +11,22 @@ import {Medico} from "../models/medico";
 export class MedicoService {
 
   private urlEndPoint:string='http://localhost:8080/api/medicos';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
+  })
 
   constructor(private http:HttpClient) { }
 
 
   saveMedico(medico: Medico):Observable<Medico>{
     console.log(medico);
-    return this.http.post<Paciente>(this.urlEndPoint,medico)
+    return this.http.post<Paciente>(this.urlEndPoint,medico,{headers: this.httpHeaders})
   }
 
   updateMedico(medico: Medico):Observable<Medico>{
     console.log(medico);
-    return this.http.put<Medico>(this.urlEndPoint,medico)
+    return this.http.put<Medico>(this.urlEndPoint,medico,{headers: this.httpHeaders})
   }
 
   deleteMedico(id?: Number){
@@ -31,6 +34,6 @@ export class MedicoService {
   }
 
   getMedico():Observable<Medico[]>{
-    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Medico[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Medico[]))
   }
 }

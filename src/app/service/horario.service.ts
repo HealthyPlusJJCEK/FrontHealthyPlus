@@ -11,19 +11,22 @@ import {Horarios} from "../models/horarios";
 export class HorarioService {
 
   private urlEndPoint:string='http://localhost:8080/api/horarios';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
+  })
 
   constructor(private http:HttpClient) { }
 
 
   saveHorario(horarios: Horarios):Observable<Usuario>{
     console.log(horarios);
-    return this.http.post<Horarios>(this.urlEndPoint,horarios)
+    return this.http.post<Horarios>(this.urlEndPoint,horarios,{headers: this.httpHeaders})
   }
 
   updateHorario(horarios: Horarios):Observable<Usuario>{
     console.log(horarios);
-    return this.http.put<Horarios>(this.urlEndPoint,horarios)
+    return this.http.put<Horarios>(this.urlEndPoint,horarios,{headers: this.httpHeaders})
   }
 
   deleteHorario(id?: Number){
@@ -31,6 +34,6 @@ export class HorarioService {
   }
 
   getHorario():Observable<Horarios[]>{
-    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Horarios[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Horarios[]))
   }
 }

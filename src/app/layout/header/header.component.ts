@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
       if(JSON.parse(sessionStorage['user']).length!=""){
         this.usuario=JSON.parse(sessionStorage['user']);
         this.loging= this.usuario.rol
+        console.log(this.usuario)
       }else {
         this.loging="ND";
         this.router.navigate(['/inicio']);

@@ -1,0 +1,28 @@
+<div *ngIf="issloading==false">
+  <section id="cuidado">
+    <div class="container">
+      <div class="img-container"></div>
+      <div class="texto">
+
+        <h2>Unidad de Cuidados Intensivos</h2>
+        <p>HealthyPlus cuenta con una renovada Area de Cuidados Intensivos monitorizada las 24 horas y equipada con tecnología de punta que nos permite servir al paciente de mejor manera aportando su seguridad. Se dispone de 7 unidades en las cuales 3 unidades tiene presiones positivas y negativas para aislamiento cuando se requiera.
+
+          La Unidad de Cuidados Intensivos abarca diferentes especializaciones:
+
+          Atención del paciente crítico
+          Aislamiento
+          Cuidados críticos coronarios
+          Cuidados intensivos del adulto
+          Quemaduras
+          Diálisis
+        </p>
+      </div>
+    </div>
+
+  </section>
+</div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

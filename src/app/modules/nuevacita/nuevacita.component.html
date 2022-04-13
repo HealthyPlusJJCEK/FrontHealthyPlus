@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="issloading==false">
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -39,11 +39,12 @@
                 <mat-list-option *ngFor="let medico of medicos" [value]="medico" style="height: max-content">
                   <mat-grid-list cols="2" rowHeight="2:1">
                     <mat-grid-tile>
-                      <img src="assets/images/medico.png" style="height: 100px; width: 100px">
+                      <img src="assets/images/medico.png" width="300px" *ngIf="medico.urlfoto==''">
+                      <img [src]="medico.urlfoto" width="300px" *ngIf="medico.urlfoto!=''">
                     </mat-grid-tile>
                     <mat-grid-tile>
                       <div *ngFor="let sucur of medico.sucursal">
-                        Titulo: {{medico.titulo}} ||
+                        Titulo: {{medico.titulo.nombre_titulo}} ||
                         SUCURSAL: Nombre: {{sucur.nombre}}
                         --Direccion: {{sucur.direccion}} --Telefono: {{sucur.telefono}}
                       </div>
@@ -110,7 +111,7 @@
               <p>Nombre: {{usuarioMedico.nombres_completos}}</p>
               <p>Correo: {{usuarioMedico.correo}}</p>
               <p *ngFor="let suc of medicoSelect.especialidad">Especilidad: {{suc.descripcion}}</p>
-              <p>Titulo: {{medicoSelect.titulo}}</p>
+              <p>Titulo: {{medicoSelect.titulo?.nombre_titulo}}</p>
             </div>
             <div class="derecha">
               <p>DIRECCION:</p>
@@ -130,3 +131,8 @@
     </mat-step>
   </mat-stepper>
 </div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

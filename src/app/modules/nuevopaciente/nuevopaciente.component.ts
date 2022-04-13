@@ -46,27 +46,27 @@ export class NuevopacienteComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if(JSON.parse(sessionStorage['user']).length!=""){
-      this.activatedRoute.params.subscribe(params => {
-        let id = params['id']
-        if(id!=""){
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id']
+      if(id!=""){
+        if(JSON.parse(sessionStorage['user']).length!=""){
           this.usuarioService.getUsuarios().subscribe(value => {
             this.usuario=value.filter(value1 => value1.id==id)[0];
             this.pacienteService.getPaciente().subscribe(value1 => {
               this.paciente=value1.filter(value2=>value2.id_usuario==id)[0];
               this.accion=false;
+              this.issloading=false;
             })
           })
+        }else {
+          this.router.navigate(['/inicio']);
         }
-      })
-
-      this.usuarioService.getUsuarios().subscribe(value => {
-        console.log(value)
-      })
-    }else {
-      this.router.navigate(['/inicio']);
-    }
+      }else {
+        this.issloading=false;
+      }
+    })
   }
+  issloading=true;
   registrarUsuario(usuario:Usuario,paciente:Paciente){
     this.usuarioService.getUsuarios().subscribe(value => {
        // @ts-ignore
@@ -111,7 +111,7 @@ export class NuevopacienteComponent implements OnInit {
           duration: 1 * 1000
         });
         console.log("hOLdesf")
-        this.router.navigate(['/inicio/inicarsesion']).then(() => {
+        this.router.navigate(['/inicio']).then(() => {
           window.location.reload();
         });
       },error => {

@@ -34,11 +34,19 @@ export class VersucursalesComponent implements OnInit {
       this.router.navigate(['/inicio']);
     }
   }
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+
+    },1000)
+  }
+
   listarSucursales(){
     this.sucursalService.getSucursal().subscribe(value => {
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.issloading=false;
     })
   }
 

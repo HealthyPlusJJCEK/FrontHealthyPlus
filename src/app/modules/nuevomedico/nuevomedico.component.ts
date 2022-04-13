@@ -70,9 +70,11 @@ export class NuevomedicoComponent implements OnInit {
       this.horarioService.getHorario().subscribe(value => {
         this.dataSource= new MatTableDataSource(value);
         this.dataSource.sort = this.sort;
+        this.issloading=false;
       })
       this.firstFormGroup = this._formBuilder.group({
         cedula: new FormControl('',[Validators.required, Validators.maxLength(10),Validators.pattern("[0-9]+")]),
+        correo: ['', [Validators.required,Validators.email]],
         clave: ['', Validators.required],
       });
       this.secondFormGroup = this._formBuilder.group({
@@ -84,6 +86,12 @@ export class NuevomedicoComponent implements OnInit {
     }else {
       this.router.navigate(['/inicio']);
     }
+  }
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+
+    },1000)
   }
 
   isAllSelected() {
@@ -112,39 +120,44 @@ export class NuevomedicoComponent implements OnInit {
   }
 
   guardarMedico(medico:Medico,usuario:Usuario){
-    var sucusal:Sucursal[]=[];
-    var espacilidad:Espacilidad[]=[];
-    sucusal.push(this.sucursal)
-    espacilidad.push(this.especialidad)
     this.usuarioService.getUsuarios().subscribe(value => {
-      // @ts-ignore
-      usuario.id=Number(value.pop().id)+1;
+      var sucusal:Sucursal[]=[];
+      var espacilidad:Espacilidad[]=[];
+      sucusal.push(this.sucursal)
+      espacilidad.push(this.especialidad)
       if(this.selection.selected.length!=0){
-        if(value.filter(value1 => value1.cedula==usuario.cedula&&value1.rol=="DO").length==0){
-          usuario.rol="DO";
-          this.usuarioService.saveUsuario(usuario).subscribe(value1 => {
-            medico.sucursal=sucusal;
-            medico.especialidad=espacilidad;
-            medico.id_usuario=usuario.id;
-            medico.horarios=this.selection.selected;
-            this.medicoService.saveMedico(medico).subscribe(value2 => {
-              this._snackBar.open("Se guardo el medico de forma exitosa", "",{
-                duration: 1 * 1000,
-              });
+        if(value.filter(value1 => value1.correo==usuario.correo).length!=0){
+          this._snackBar.open("Error, correo ya existe correo", "Aceptar",{
+          });
+        }else {
+          if(value.filter(value1 => value1.cedula==usuario.cedula&&value1.rol=="DO").length==0){
+            // @ts-ignore
+            usuario.id=Number(value.pop().id)+1;
+            usuario.rol="DO";
+            this.usuarioService.saveUsuario(usuario).subscribe(value1 => {
+              medico.sucursal=sucusal;
+              medico.especialidad=espacilidad;
+              medico.id_usuario=usuario.id;
+              medico.horarios=this.selection.selected;
+              this.medicoService.saveMedico(medico).subscribe(value2 => {
+                this._snackBar.open("Se guardo el medico de forma exitosa", "",{
+                  duration: 1 * 1000,
+                });
+                this.router.navigate(['/inicio/adminstradar/vermedico'])
+              },error => {
+                this._snackBar.open("Error, no se guardo el medico", "",{
+                  duration: 1 * 1000,
+                });
+              })
             },error => {
               this._snackBar.open("Error, no se guardo el medico", "",{
                 duration: 1 * 1000,
               });
             })
-          },error => {
-            this._snackBar.open("Error, no se guardo el medico", "",{
-              duration: 1 * 1000,
+          }else {
+            this._snackBar.open("Error, ya existe un medico con en esa cédula o correo", "Aceptar",{
             });
-          })
-          console.log(medico,usuario)
-        }else {
-          this._snackBar.open("Error, ya existe un medico con en esa cédula", "Aceptar",{
-          });
+          }
         }
       }else {
         this._snackBar.open("Error, es necesario que el medico tenga algun horario", "Aceptar",{

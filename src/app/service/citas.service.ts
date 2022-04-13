@@ -12,19 +12,22 @@ import {Citas} from "../models/citas";
 export class CitasService {
 
   private urlEndPoint:string='http://localhost:8080/api/citas';
-  private httpHeaders = new HttpHeaders()
+  private httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
+  })
 
   constructor(private http:HttpClient) { }
 
 
   saveCita(citas: Citas):Observable<Citas>{
     console.log(citas);
-    return this.http.post<Citas>(this.urlEndPoint,citas)
+    return this.http.post<Citas>(this.urlEndPoint,citas,{headers: this.httpHeaders})
   }
 
   updateCita(citas: Citas):Observable<Citas>{
     console.log(citas);
-    return this.http.put<Citas>(this.urlEndPoint,citas)
+    return this.http.put<Citas>(this.urlEndPoint,citas,{headers: this.httpHeaders})
   }
 
   deleteCita(id?: Number){
@@ -32,6 +35,6 @@ export class CitasService {
   }
 
   getCita():Observable<Citas[]>{
-    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Citas[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Citas[]))
   }
 }

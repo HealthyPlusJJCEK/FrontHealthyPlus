@@ -1,0 +1,54 @@
+*{
+  font-size: large;
+    box-sizing: border-box;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    margin: 0;
+  }
+
+#quirofano{
+    background-color: rgb(255,255,255);
+}
+#quirofano .container{
+    text-align: center;
+    padding: 200px 12px;
+}
+@media (min-width: 850px){
+
+
+    #quirofano .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #quirofano .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #quirofano h2{
+        margin-top: 0px;
+    }
+
+    #quirofano .img-container{
+        background-image: url("https://www.elhospital.com/documenta/imagenes/141400/AMP-Retos-en-quirofanos-al-usar-dispositivos-electricos.jpg");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px;
+    }
+
+
+  }

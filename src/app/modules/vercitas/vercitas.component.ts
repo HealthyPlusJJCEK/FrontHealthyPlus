@@ -16,6 +16,13 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {Citas} from "../../models/citas";
 import {MatSnackBar} from "@angular/material/snack-bar";
+// @ts-ignore
+import pdfMake from 'pdfmake/build/pdfmake';
+// @ts-ignore
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import {DatePipe} from "@angular/common";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-vercitas',
@@ -72,6 +79,13 @@ export class VercitasComponent implements OnInit {
       this.router.navigate(['/inicio']);
     }
   }
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+
+    },1000)
+  }
+
 
   listarCitas(id:Number){
     this.citasService.getCita().subscribe(value => {
@@ -81,6 +95,7 @@ export class VercitasComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       console.log(this.citas)
+      this.issloading=false;
     })
   }
 
@@ -106,4 +121,88 @@ export class VercitasComponent implements OnInit {
       });
     })
   }
+
+  async createPdf(cita:Citas) {
+    var pipe:DatePipe = new DatePipe('en-US')
+    var usuarioPaciente:Usuario = new Usuario();
+    var usuarioMedico:Usuario = new Usuario();
+    this.usuarioService.getUsuarios().subscribe(async value => {
+      // @ts-ignore
+      usuarioPaciente = value.filter(value1 => value1.id == cita.paciente[0].id_usuario)[0];
+      // @ts-ignore
+      usuarioMedico = value.filter(value1 => value1.id == cita.medico[0].id_usuario)[0];
+      const pdfDefinition: any = {
+        content: [
+          {image: await this.getBase64ImageFromURL('assets/images/HealthyPlusV2.png'), width: 50},
+          {
+            text: '_________________________________________________________________________________________',
+            alignment: 'center'
+          },
+          // @ts-ignore
+          {text: this.dia, alignment: 'right'},
+          {text: 'CERTIFICADO DE CITA', fontSize: 15, bold: true, alignment: 'center'},
+          {text: 'INFORMACION DE CITA GENERAL', fontSize: 15, margin: [0, 0, 20, 0]},
+          {text: '    '},
+          {text: 'PACIENTE:', fontSize: 13, bold: true},
+          {text: 'Cédula: ' + usuarioPaciente.cedula},
+          {text: 'Nombre: ' + usuarioPaciente.nombres_completos},
+          {text: 'Télefono: ' + usuarioPaciente.telefono},
+          {text: '    '},
+          {text: 'MEDICO:', fontSize: 13, bold: true},
+          {text: 'Nombre: ' + usuarioMedico.nombres_completos},
+          {text: 'Télefono: ' + usuarioMedico.telefono},
+          // @ts-ignore
+          {text: 'Especilidad: ' + cita.medico[0].especialidad[0].descripcion},
+          // @ts-ignore
+          {text: 'Titulo: ' + cita.medico[0].titulo.nombre_titulo},
+          {text: '    '},
+          {text: 'DIRECCION:', fontSize: 13, bold: true},
+          // @ts-ignore
+          {text: 'Sucursal nombre : ' + cita.medico[0].sucursal[0].nombre},
+          // @ts-ignore
+          {text: 'Télefono: ' + cita.medico[0].sucursal[0].telefono},
+          // @ts-ignore
+          {text: 'Dirección: ' + cita.medico[0].sucursal[0].direccion},
+          {text: '    '},
+          {text: 'HORARIOS:', fontSize: 13, bold: true},
+          // @ts-ignore
+          {text: 'Dia: ' + pipe.transform(cita.horarios[0].dia,'dd/MM/yyyy')},
+          // @ts-ignore
+          {text: 'Desde: ' +  cita.horarios[0].hora_inico},
+          // @ts-ignore
+          {text: 'Hasta: ' + cita.horarios[0].hora_final},
+
+        ]
+      }
+      const pdf = pdfMake.createPdf(pdfDefinition);
+      pdf.open();
+    })
+  }
+
+  getBase64ImageFromURL(url:any) {
+    return new Promise((resolve, reject) => {
+      var img = new Image();
+      img.setAttribute("crossOrigin", "anonymous");
+
+      img.onload = () => {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        var ctx = canvas.getContext("2d");
+        // @ts-ignore
+        ctx.drawImage(img, 0, 0);
+
+        var dataURL = canvas.toDataURL("image/png");
+
+        resolve(dataURL);
+      };
+
+      img.onerror = error => {
+        reject(error);
+      };
+
+      img.src = url;
+    });}
+
 }

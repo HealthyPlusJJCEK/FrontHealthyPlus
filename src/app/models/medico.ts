@@ -5,6 +5,7 @@ import {Horarios} from "./horarios";
 export class Medico {
   id?:Number;
   foto?:String;
+  urlfoto?:String;
   id_usuario?:Number;
   sucursal?:Sucursal[];
   especialidad?:Espacilidad[];

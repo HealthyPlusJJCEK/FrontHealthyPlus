@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="issloading==false">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>Nueva sucursal</mat-card-title>
@@ -34,3 +34,8 @@
     </form>
   </mat-card>
 </div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: 0 auto;">
+    <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>

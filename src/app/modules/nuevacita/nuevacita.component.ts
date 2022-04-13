@@ -59,8 +59,8 @@ export class NuevacitaComponent implements OnInit {
           })
           this.pacienteService.getPaciente().subscribe(value => {
             this.pacienteSelect=value.filter(value1 => value1.id_usuario==id)[0]
+            this.issloading=false;
           })
-
         }
       })
       this.espacilidadService.getEspecilidad().subscribe(value => {
@@ -79,9 +79,15 @@ export class NuevacitaComponent implements OnInit {
       this.router.navigate(['/inicio']);
     }
   }
+  issloading=true;
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
 
+    },1000)
+  }
 
   selectEspacilidad(espalidadselect: MatSelectionListChange){
+    this.medicos.length=0;
     this.usuarioMedico= new Usuario();
     var espalidad:Espacilidad=new Espacilidad();
     espalidad=espalidadselect.option.value;
@@ -89,7 +95,7 @@ export class NuevacitaComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe(user =>{
       this.medicoService.getMedico().subscribe(value => {
         // @ts-ignore
-        this.medicos=value.filter(value1 => value1.especialidad[0].id==espalidad.id)
+        this.medicos=value.filter(value1 => value1.especialidad[0].id==espalidad.id&&value1.titulo?.nombre_titulo!=null)
       })
     })
   }

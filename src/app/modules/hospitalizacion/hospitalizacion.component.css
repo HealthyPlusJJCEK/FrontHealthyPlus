@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+  font-size: large;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    margin: 0;
+  }
+
+#hospitalizacion{
+    background-color: rgb(255,255,255);
+}
+#hospitalizacion .container{
+    text-align: center;
+    padding: 200px 12px;
+}
+@media (min-width: 850px){
+
+
+    #hospitalizacion .container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #hospitalizacion .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #hospitalizacion h2{
+        margin-top: 0px;
+    }
+
+    #hospitalizacion .img-container{
+        background-image: url("https://dcjf6nlqkcrsk.cloudfront.net/wp-content/uploads/2020/01/hospitalizacao-domiciliaria.png");
+        background-size: cover;
+        background-position: center center;
+        height: 500px;
+        width: 400px;
+    }
+
+
+  }
