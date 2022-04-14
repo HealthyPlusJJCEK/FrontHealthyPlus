@@ -30,7 +30,6 @@ export class VersucursalesComponent implements OnInit {
               private title: Title) { }
 
   ngOnInit(): void {
-    this.title.setTitle("Ver sucursales")
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.listarSucursales()
     }else {
