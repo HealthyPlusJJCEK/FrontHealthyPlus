@@ -4,6 +4,7 @@ import {Sucursal} from "../../models/sucursal";
 import {SucursalService} from "../../service/sucursal.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevasucursal',
@@ -16,19 +17,23 @@ export class NuevasucursalComponent implements OnInit {
   constructor(private sucursalService:SucursalService,
               private _snackBar: MatSnackBar,
               private router:Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar sucursal")
           this.sucursalService.getSucursal().subscribe(value => {
             this.sucursal=value.filter(value1 => value1.id==id)[0];
             this.issloading=false;
           })
+        }else {
+          this.issloading=false;
+          this.title.setTitle("Nueva sucursal")
         }
-        this.issloading=false;
       })
     }else {
       this.router.navigate(['/inicio']);

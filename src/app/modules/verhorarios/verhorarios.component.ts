@@ -7,6 +7,7 @@ import {Sucursal} from "../../models/sucursal";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {Horarios} from "../../models/horarios";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verhorarios',
@@ -27,22 +28,18 @@ export class VerhorariosComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private router:Router,
               private activatedRoute: ActivatedRoute,
-              private horarioService:HorarioService) { }
+              private horarioService:HorarioService,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
+      this.title.setTitle("Ver horarios")
       this.listarHoarios();
     }else {
       this.router.navigate(['/inicio']);
     }
   }
   issloading=true;
-  ngAfterViewInit(): void {
-    setTimeout(()=>{
-
-    },1000)
-  }
-
 
   listarHoarios(){
     this.horarioService.getHorario().subscribe(value => {

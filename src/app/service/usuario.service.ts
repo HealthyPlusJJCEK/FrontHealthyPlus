@@ -9,7 +9,7 @@ import {Usuario} from "../models/usuario";
 export class UsuarioService {
 
 
-  private urlEndPoint:string='http://localhost:8080/api/usuarios';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/usuarios';
   private httpHeaders = new HttpHeaders()
 
   constructor(private http:HttpClient) { }

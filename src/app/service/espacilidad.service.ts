@@ -10,7 +10,7 @@ import {Espacilidad} from "../models/espacilidad";
 })
 export class EspacilidadService {
 
-  private urlEndPoint:string='http://localhost:8080/api/especiliades';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/especiliades';
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token

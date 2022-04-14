@@ -7,6 +7,7 @@ import {EspacilidadService} from "../../service/espacilidad.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Espacilidad} from "../../models/espacilidad";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verespaclidades',
@@ -27,11 +28,13 @@ export class VerespaclidadesComponent implements OnInit {
   constructor(private espacilidadService:EspacilidadService,
               private _snackBar: MatSnackBar,
               private router:Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.listarEspacilidades();
+      this.title.setTitle("Ver especialidad")
     }else {
       this.router.navigate(['/inicio']);
     }

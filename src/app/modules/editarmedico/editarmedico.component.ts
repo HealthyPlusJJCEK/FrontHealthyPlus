@@ -11,6 +11,7 @@ import {MedicoService} from "../../service/medico.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Medico, Titulo} from "../../models/medico";
 import {AssestService} from "../../service/assest.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarmedico',
@@ -35,7 +36,8 @@ export class EditarmedicoComponent implements OnInit {
               private medicoService:MedicoService,
               private activatedRoute: ActivatedRoute,
               private router:Router,
-              private assestService:AssestService) {
+              private assestService:AssestService,
+              private title: Title) {
     this._adapter.setLocale('es-ec');
   }
 
@@ -44,6 +46,7 @@ export class EditarmedicoComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!=""){
+          this.title.setTitle("Editar medico")
           this.usuarioService.getUsuarios().subscribe(value => {
             console.log(value)
             this.usuario=value.filter(value1 => value1.id==id)[0];
@@ -59,6 +62,9 @@ export class EditarmedicoComponent implements OnInit {
               }
             })
           })
+        }else {
+          this.issloading=false;
+          this.title.setTitle("Editar medico")
         }
       })
     }else {

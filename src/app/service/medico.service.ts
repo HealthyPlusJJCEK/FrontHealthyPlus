@@ -10,7 +10,7 @@ import {Medico} from "../models/medico";
 })
 export class MedicoService {
 
-  private urlEndPoint:string='http://localhost:8080/api/medicos';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/medicos';
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token

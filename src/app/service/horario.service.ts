@@ -10,7 +10,7 @@ import {Horarios} from "../models/horarios";
 })
 export class HorarioService {
 
-  private urlEndPoint:string='http://localhost:8080/api/horarios';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/horarios';
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token

@@ -12,6 +12,7 @@ import {DateAdapter} from "@angular/material/core";
 import {UsuarioService} from "../../service/usuario.service";
 import {MedicoService} from "../../service/medico.service";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verpacientes',
@@ -39,15 +40,16 @@ export class VerpacientesComponent implements OnInit {
               private _adapter: DateAdapter<any>,
               private usuarioService:UsuarioService,
               private medicoService:MedicoService,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver pacientes")
     this.usuarioService.getUsuarios().subscribe(value => {
       this.usuario=value.filter(value1 => value1.rol=="PA")
       this.dataSource = new MatTableDataSource(this.usuario);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.issloading=false;
       this.issloading=false;
     })
   }

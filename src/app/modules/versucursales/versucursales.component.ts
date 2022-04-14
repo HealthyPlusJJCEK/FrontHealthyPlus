@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {SucursalService} from "../../service/sucursal.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-versucursales',
@@ -25,7 +26,8 @@ export class VersucursalesComponent implements OnInit {
 
   constructor(private sucursalService:SucursalService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){

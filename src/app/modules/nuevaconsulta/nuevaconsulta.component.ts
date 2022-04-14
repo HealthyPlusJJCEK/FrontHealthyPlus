@@ -16,6 +16,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {DatePipe} from "@angular/common";
 import {Usuario} from "../../models/usuario";
+import {Title} from "@angular/platform-browser";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -46,19 +47,23 @@ export class NuevaconsultaComponent implements OnInit {
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
               private consultaService:ConsultaService,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar consulta")
           this.citasService.getCita().subscribe(value => {
             this.cita=value.filter(value1 => value1.id==id)[0]
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Nueva conculta")
+          this.issloading=false;
         }
-        this.issloading=false;
       })
 
       this.firstFormGroup = this._formBuilder.group({

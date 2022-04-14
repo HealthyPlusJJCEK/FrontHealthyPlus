@@ -10,6 +10,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConsultaService} from "../../service/consulta.service";
 import {Consultas, Diagnostico, Enfermedad, Tratamiento} from "../../models/consultas";
 import {Citas} from "../../models/citas";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarconsulta',
@@ -38,13 +39,15 @@ export class EditarconsultaComponent implements OnInit {
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
               private consultaService:ConsultaService,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar cunsulta")
           this.consultaService.getConsultas().subscribe(value => {
             this.consulta=value.filter(value1 => value1.id==id)[0];
             // @ts-ignore
@@ -55,6 +58,9 @@ export class EditarconsultaComponent implements OnInit {
             this.enfermedad=this.consulta.enfermedad;
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Nueva consulta")
+          this.issloading=false;
         }
       })
 

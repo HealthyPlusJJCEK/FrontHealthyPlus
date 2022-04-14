@@ -9,7 +9,7 @@ import {Paciente} from "../models/paciente";
 })
 export class PacienteService {
 
-  private urlEndPoint:string='http://localhost:8080/api/pacientes';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/pacientes';
   private httpHeaders = new HttpHeaders({})
 
   constructor(private http:HttpClient) { }

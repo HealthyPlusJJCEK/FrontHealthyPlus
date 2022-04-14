@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-cuidado-intensivo',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuidadoIntensivoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private title: Title) { }
 
   issloading=true;
   ngOnInit(): void {
+    this.title.setTitle("Cuidados intensivos")
   }
   ngAfterViewInit(): void {
     setTimeout(()=>{

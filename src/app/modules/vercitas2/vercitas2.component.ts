@@ -17,6 +17,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {DatePipe} from "@angular/common";
 import {Usuario} from "../../models/usuario";
+import {Title} from "@angular/platform-browser";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -47,14 +48,19 @@ export class Vercitas2Component implements OnInit {
               private citasService:CitasService,
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Ver cita")
           this.listaCitas(id)
+        }else {
+          this.issloading=false;
+          this.title.setTitle("Ver cita")
         }
       })
     }else {

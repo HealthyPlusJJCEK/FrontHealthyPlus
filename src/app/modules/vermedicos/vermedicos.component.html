@@ -1,8 +1,8 @@
 <div *ngIf="issloading==false">
   <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>Nueva sucursal</mat-card-title>
-      <mat-card-subtitle>Resgistrar de sucursales</mat-card-subtitle>
+      <mat-card-title>Nueva medico</mat-card-title>
+      <mat-card-subtitle>Resgistrar de medicos</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field appearance="standard">
@@ -48,7 +48,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ELIMINAR </th>
             <td mat-cell *matCellDef="let row">
               <button mat-flat-button color="warn" (click)="eliminarMedico(row)">
-                EDITAR</button>
+                ELIMINAR</button>
             </td>
           </ng-container>
 

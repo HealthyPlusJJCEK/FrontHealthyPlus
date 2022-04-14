@@ -14,6 +14,7 @@ import {Paciente} from "../../models/paciente";
 import {PacienteService} from "../../service/paciente.service";
 import {Citas} from "../../models/citas";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevacita',
@@ -47,13 +48,15 @@ export class NuevacitaComponent implements OnInit {
               private citasService:CitasService,
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar cita")
           this.usuarioService.getUsuarios().subscribe(value => {
             this.usuarioPaciente=value.filter(value1 => value1.id==id)[0]
           })
@@ -61,6 +64,9 @@ export class NuevacitaComponent implements OnInit {
             this.pacienteSelect=value.filter(value1 => value1.id_usuario==id)[0]
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Nueva cita")
+          this.issloading=false;
         }
       })
       this.espacilidadService.getEspecilidad().subscribe(value => {

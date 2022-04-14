@@ -4,6 +4,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HorarioService} from "../../service/horario.service";
 import {Horarios} from "../../models/horarios";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevohorario',
@@ -18,19 +19,23 @@ export class NuevohorarioComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private router:Router,
               private activatedRoute: ActivatedRoute,
-              private horarioService:HorarioService) { }
+              private horarioService:HorarioService,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar horario")
           this.horarioService.getHorario().subscribe(value => {
             this.horario=value.filter(value1 => value1.id==id)[0]
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Nuevo horario")
+          this.issloading=false;
         }
-        this.issloading=false;
       })
     }else {
       this.router.navigate(['/inicio']);

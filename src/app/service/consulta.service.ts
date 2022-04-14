@@ -9,7 +9,7 @@ import {Consultas, Diagnostico} from "../models/consultas";
 })
 export class ConsultaService {
 
-  private urlEndPoint:string='http://localhost:8080/api/consultas';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/consultas';
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token

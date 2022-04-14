@@ -16,6 +16,7 @@ import {UsuarioService} from "../../service/usuario.service";
 import {Medico} from "../../models/medico";
 import {MedicoService} from "../../service/medico.service";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevomedico',
@@ -55,11 +56,13 @@ export class NuevomedicoComponent implements OnInit {
               private _adapter: DateAdapter<any>,
               private usuarioService:UsuarioService,
               private medicoService:MedicoService,
-              private router:Router) {
+              private router:Router,
+              private title: Title) {
     this._adapter.setLocale('es-ec');
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo meidico")
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.sucursalService.getSucursal().subscribe(value => {
         this.sucursales=value;

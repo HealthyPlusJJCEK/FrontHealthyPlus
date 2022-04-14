@@ -6,6 +6,7 @@ import {UsuarioService} from "../../service/usuario.service";
 import {PacienteService} from "../../service/paciente.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevopaciente',
@@ -43,12 +44,14 @@ export class NuevopacienteComponent implements OnInit {
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
               private router:Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       let id = params['id']
       if(id!=""){
+        this.title.setTitle("Editar paciente")
         if(JSON.parse(sessionStorage['user']).length!=""){
           this.usuarioService.getUsuarios().subscribe(value => {
             this.usuario=value.filter(value1 => value1.id==id)[0];
@@ -62,6 +65,7 @@ export class NuevopacienteComponent implements OnInit {
           this.router.navigate(['/inicio']);
         }
       }else {
+        this.title.setTitle("Nuevo paciente")
         this.issloading=false;
       }
     })

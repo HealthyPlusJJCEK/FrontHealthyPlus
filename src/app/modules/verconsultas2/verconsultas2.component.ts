@@ -18,6 +18,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {DatePipe} from "@angular/common";
 import {Usuario} from "../../models/usuario";
+import {Title} from "@angular/platform-browser";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -49,13 +50,15 @@ export class Verconsultas2Component implements OnInit {
               private pacienteService:PacienteService,
               private _snackBar: MatSnackBar,
               private consultaService:ConsultaService,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Ver consultas")
           this.consultaService.getConsultas().subscribe(value => {
             // @ts-ignore
             this.consultas=value.filter(value1 => value1.pacienteSet[0].id_usuario==id);
@@ -65,6 +68,9 @@ export class Verconsultas2Component implements OnInit {
             console.log(this.consultas)
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Ver consultas")
+          this.issloading=false;
         }
       })
     }else {

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UsuarioService} from "../../service/usuario.service";
 import {Usuario} from "../../models/usuario";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -24,10 +25,12 @@ export class IniciarsesionComponent implements OnInit {
   constructor(private router:Router,
               private usuarioService:UsuarioService,
               private _snackBar: MatSnackBar,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Iniciar Sesion")
   }
   profileFormAdmin = new FormGroup({
     cedula: new FormControl('',[Validators.required, Validators.maxLength(10),Validators.pattern("[0-9]+")]),

@@ -13,6 +13,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Horarios} from "../../models/horarios";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vermedicos',
@@ -39,15 +40,16 @@ export class VermedicosComponent implements OnInit {
               private _adapter: DateAdapter<any>,
               private usuarioService:UsuarioService,
               private medicoService:MedicoService,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver medicos")
     this.usuarioService.getUsuarios().subscribe(value => {
       this.usuario=value.filter(value1 => value1.rol=="DO")
       this.dataSource = new MatTableDataSource(this.usuario);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.issloading=false;
       this.issloading=false;
     })
   }

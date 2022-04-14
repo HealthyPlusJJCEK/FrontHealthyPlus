@@ -6,6 +6,7 @@ import {EspacilidadService} from "../../service/espacilidad.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Sucursal} from "../../models/sucursal";
 import {Espacilidad} from "../../models/espacilidad";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevaespacialidad',
@@ -18,19 +19,23 @@ export class NuevaespacialidadComponent implements OnInit {
   constructor(private espacilidadService:EspacilidadService,
               private _snackBar: MatSnackBar,
               private router:Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
   ngOnInit(): void {
     if(JSON.parse(sessionStorage['user']).length!=""){
       this.activatedRoute.params.subscribe(params => {
         let id = params['id']
         if(id!="?"){
+          this.title.setTitle("Editar especialidad")
           this.espacilidadService.getEspecilidad().subscribe(value => {
             this.espacilidad=value.filter(value1 => value1.id==id)[0];
             this.issloading=false;
           })
+        }else {
+          this.title.setTitle("Nueva especialidad")
+          this.issloading=false;
         }
-        this.issloading=false;
       })
     }else {
       this.router.navigate(['/inicio']);

@@ -11,7 +11,7 @@ import {Citas} from "../models/citas";
 })
 export class CitasService {
 
-  private urlEndPoint:string='http://localhost:8080/api/citas';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/citas';
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token

@@ -9,7 +9,7 @@ import {As} from "../models/as";
 })
 export class AssestService {
 
-  private urlEndPoint:string='http://localhost:8080/api/assets';
+  private urlEndPoint:string='https://apphealthyplus.herokuapp.com/api/assets';
   private httpHeaders = new HttpHeaders({
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage["user"]).token
   })
