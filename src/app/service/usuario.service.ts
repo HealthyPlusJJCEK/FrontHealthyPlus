@@ -22,7 +22,6 @@ export class UsuarioService {
   updateUsuario(usuario: Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(this.urlEndPoint,usuario)
   }
-
   deleteUsuario(id?: Number){
     return this.http.delete<Usuario>(this.urlEndPoint+'/'+id)
   }
