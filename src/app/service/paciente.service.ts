@@ -20,7 +20,6 @@ export class PacienteService {
   }
 
   updatePaciente(paciente: Paciente):Observable<Usuario>{
-    console.log(paciente);
     return this.http.put<Paciente>(this.urlEndPoint,paciente)
   }
 

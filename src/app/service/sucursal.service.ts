@@ -19,12 +19,10 @@ export class SucursalService {
 
 
   saveSucursal(sucursal: Sucursal):Observable<Usuario>{
-    console.log(sucursal);
     return this.http.post<Sucursal>(this.urlEndPoint,sucursal,{headers: this.httpHeaders})
   }
 
   updateSucursal(sucursal: Sucursal):Observable<Usuario>{
-    console.log(sucursal);
     return this.http.put<Sucursal>(this.urlEndPoint,sucursal,{headers: this.httpHeaders})
   }
 

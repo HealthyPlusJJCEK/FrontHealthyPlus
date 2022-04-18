@@ -42,7 +42,7 @@ button:hover{
 
 header{
   background-color: rgb(245,245,245);
-  
+
 }
 
 header .logo{
@@ -89,11 +89,11 @@ header a:hover{
       rgba(0,0,0,0.5),
       rgba(0,0,0,0.5)
   )
-  ,url("/assets/images/doctor-v.jpeg");
+  ,url("src/assets/images/doctor-v.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  
+
 }
 
 #hero h1{
@@ -146,7 +146,7 @@ header a:hover{
       rgba(0,0,0,0.5),
       rgba(0,0,0,0.5)
   )
-  ,url("/assets/images/hospitalizacion.jpg");
+  ,url("src/assets/images/hospitalizacion.jpg");
 
 }
 
@@ -156,7 +156,7 @@ header a:hover{
       rgba(0,0,0,0.5),
       rgba(0,0,0,0.5)
   )
-  ,url("/assets/images/quirofanos-nuevos.jpg");
+  ,url("src/assets/images/quirofanos-nuevos.jpg");
 }
 
 .carta:nth-child(3){
@@ -165,7 +165,7 @@ header a:hover{
       rgba(0,0,0,0.5),
       rgba(0,0,0,0.5)
   )
-  ,url("/assets/images/uinidad.jpg");
+  ,url("src/assets/images/uinidad.jpg");
 
 }
 .carta:nth-child(4){
@@ -174,7 +174,7 @@ header a:hover{
       rgba(0,0,0,0.5),
       rgba(0,0,0,0.5)
   )
-  ,url("/assets/images/emergencia.jpg");
+  ,url("src/assets/images/emergencia.jpg");
 
 }
 
@@ -201,30 +201,8 @@ header a:hover{
   height: 80vh;
 }
 
-#final h2{
-  font-size: 9vw;
-}
 
-#final button{
-  font-size: 5vw;
-}
 
-footer{
-  background-color: rgb(230,230,230);
-}
-
-footer p{
-  margin: 0;
-  padding: 12px;
-  color: rgb(100,100,100);
-}
-
-footer .container{
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
 
 @media (min-width: 850px){
   header{
@@ -267,11 +245,11 @@ footer .container{
   }
 
   #somos-healthy .img-container{
-      background-image: url("/assets/images/doctor-v3.jpg");
+      background-image: url("src/assets/images/doctor-v3.jpg");
       background-size: cover;
       background-position: center center;
       height: 500px;
-      width: 400px; 
+      width: 400px;
   }
 
   #nuestros-servicios .programas{
@@ -294,7 +272,7 @@ footer .container{
 
   #nuestros-servicios .carta{
       padding: 50px;
-     
+
   }
 
   .carta:first-child{
@@ -303,7 +281,7 @@ footer .container{
           rgba(0,0,0,0.5),
           rgba(0,0,0,0.5)
       )
-      ,url("/assets/images/hospitalizacion.jpg");
+      ,url("src/assets/images/hospitalizacion.jpg");
 
   }
 
@@ -313,7 +291,7 @@ footer .container{
           rgba(0,0,0,0.5),
           rgba(0,0,0,0.5)
       )
-      ,url("/assets/images/quirofanos-nuevos.jpg");
+      ,url("src/assets/images/quirofanos-nuevos.jpg");
   }
 
   .carta:nth-child(3){
@@ -322,7 +300,7 @@ footer .container{
           rgba(0,0,0,0.5),
           rgba(0,0,0,0.5)
       )
-      ,url("/assets/images/uinidad.jpg");
+      ,url("src/assets/images/uinidad.jpg");
 
   }
   .carta:nth-child(4){
@@ -331,12 +309,12 @@ footer .container{
           rgba(0,0,0,0.5),
           rgba(0,0,0,0.5)
       )
-      ,url("/assets/images/emergencia.jpg");
+      ,url("src/assets/images/emergencia.jpg");
 
   }
 
   #caracteristicas{
-      background-image: url("/assets/images/capacitacion-medica.jpg");
+      background-image: url("src/assets/images/capacitacion-medica.jpg");
       background-repeat: no-repeat;
       background-size: 500px 400px;
       background-position: calc(100vw - 500px) 120px;
@@ -354,14 +332,80 @@ footer .container{
       font-size: 5em;
   }
 
- 
+
   footer .container{
-      justify-content: flex-end;
+
   }
 }
 
 @media (min-width: 1200px) {
   #caracteristicas{
       background-position-x: calc(100vw - 800px);
+  }
+}
+
+/*::css:::Pie de Pagina :::*/
+.pie-pagina{
+  width: 100%;
+  background-color: rgb(30,30,30);
+}
+.pie-pagina .grupo-1{
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap:50px;
+  padding: 45px 0px;
+}
+.pie-pagina .grupo-1 .box figure{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pie-pagina .grupo-1 .box figure img{
+  width: 250px;
+}
+.pie-pagina .grupo-1 .box h2{
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+.pie-pagina .grupo-1 .box p{
+  color: #efefef;
+  margin-bottom: 10px;
+}
+.pie-pagina .grupo-1 .red-social a{
+  display: inline-block;
+  text-decoration: none;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  color: #fff;
+  margin-right: 10px;
+  background-color: rgb(30,30,30);
+  text-align: center;
+  transition: all 300ms ease;
+}
+.pie-pagina .grupo-1 .red-social a:hover{
+  color: aqua;
+}
+.pie-pagina .grupo-2{
+  background-color: rgb(30,30,30);
+  padding: 15px 10px;
+  text-align: center;
+  color: #fff;
+}
+.pie-pagina .grupo-2 small{
+  font-size: 15px;
+}
+@media screen and (max-width:800px){
+  .pie-pagina .grupo-1{
+    width: 90%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap:30px;
+    padding: 35px 0px;
   }
 }

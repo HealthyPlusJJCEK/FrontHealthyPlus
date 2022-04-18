@@ -21,12 +21,10 @@ export class CitasService {
 
 
   saveCita(citas: Citas):Observable<Citas>{
-    console.log(citas);
     return this.http.post<Citas>(this.urlEndPoint,citas,{headers: this.httpHeaders})
   }
 
   updateCita(citas: Citas):Observable<Citas>{
-    console.log(citas);
     return this.http.put<Citas>(this.urlEndPoint,citas,{headers: this.httpHeaders})
   }
 

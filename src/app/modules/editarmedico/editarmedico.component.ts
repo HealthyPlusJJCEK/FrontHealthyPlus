@@ -52,7 +52,6 @@ export class EditarmedicoComponent implements OnInit {
             this.usuario=value.filter(value1 => value1.id==id)[0];
             this.medicoService.getMedico().subscribe(value1 => {
               this.medico=value1.filter(value2=>value2.id_usuario==id)[0];
-              console.log(this.medico)
               if(this.medico.titulo?.nombre_titulo!=null){
                 // @ts-ignore
                 this.titulo=this.medico.titulo

@@ -20,12 +20,10 @@ export class HorarioService {
 
 
   saveHorario(horarios: Horarios):Observable<Usuario>{
-    console.log(horarios);
     return this.http.post<Horarios>(this.urlEndPoint,horarios,{headers: this.httpHeaders})
   }
 
   updateHorario(horarios: Horarios):Observable<Usuario>{
-    console.log(horarios);
     return this.http.put<Horarios>(this.urlEndPoint,horarios,{headers: this.httpHeaders})
   }
 

@@ -78,7 +78,6 @@ export class Vercitas2Component implements OnInit {
     this.citasService.getCita().subscribe(value => {
       // @ts-ignore
       this.citas=value.filter(value1 => value1.medico[0].id_usuario==id);
-      console.log(this.citas)
       this.dataSource = new MatTableDataSource(this.citas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

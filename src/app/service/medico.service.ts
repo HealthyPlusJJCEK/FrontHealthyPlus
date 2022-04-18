@@ -20,12 +20,10 @@ export class MedicoService {
 
 
   saveMedico(medico: Medico):Observable<Medico>{
-    console.log(medico);
     return this.http.post<Paciente>(this.urlEndPoint,medico,{headers: this.httpHeaders})
   }
 
   updateMedico(medico: Medico):Observable<Medico>{
-    console.log(medico);
     return this.http.put<Medico>(this.urlEndPoint,medico,{headers: this.httpHeaders})
   }
 

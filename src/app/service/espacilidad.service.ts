@@ -20,12 +20,10 @@ export class EspacilidadService {
 
 
   saveEspecilidad(espacilidad: Espacilidad):Observable<Usuario>{
-    console.log(espacilidad);
     return this.http.post<Paciente>(this.urlEndPoint,espacilidad,{headers: this.httpHeaders})
   }
 
   updateEspecilidad(espacilidad: Espacilidad):Observable<Usuario>{
-    console.log(espacilidad);
     return this.http.put<Espacilidad>(this.urlEndPoint,espacilidad,{headers: this.httpHeaders})
   }
 

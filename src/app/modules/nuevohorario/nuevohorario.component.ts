@@ -56,7 +56,6 @@ export class NuevohorarioComponent implements OnInit {
   });
 
   guardarHoarios(horarios:Horarios){
-    console.log(horarios)
     // @ts-ignore
     if(horarios.hora_final>horarios.hora_inico){
       this.horarioService.saveHorario(horarios).subscribe(value => {

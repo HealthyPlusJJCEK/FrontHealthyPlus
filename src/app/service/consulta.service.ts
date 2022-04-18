@@ -19,12 +19,10 @@ export class ConsultaService {
 
 
   saveConsultas(consultas: Consultas):Observable<Consultas>{
-    console.log(consultas);
     return this.http.post<Consultas>(this.urlEndPoint,consultas,{headers: this.httpHeaders})
   }
 
   updateConsultas(consultas: Consultas):Observable<Consultas>{
-    console.log(consultas);
     return this.http.put<Consultas>(this.urlEndPoint,consultas,{headers: this.httpHeaders})
   }
 

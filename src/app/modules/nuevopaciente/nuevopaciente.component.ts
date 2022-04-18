@@ -83,7 +83,6 @@ export class NuevopacienteComponent implements OnInit {
             this._snackBar.open("Usuario registrado corrctamente, ahora puede inciar sesión", "",{
               duration: 1 * 1000
             });
-            console.log("hOLdesf")
             this.router.navigate(['/inicio/inicarsesion']).then(() => {
               window.location.reload();
             });
@@ -102,7 +101,6 @@ export class NuevopacienteComponent implements OnInit {
         this._snackBar.open("El correo ingresado ya esta registrado", "",{
           duration: 1 * 1000,
         });
-        console.log("hOL")
       }
     })
   }

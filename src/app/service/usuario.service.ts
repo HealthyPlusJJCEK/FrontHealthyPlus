@@ -16,12 +16,10 @@ export class UsuarioService {
 
 
   saveUsuario(usuario: Usuario):Observable<Usuario>{
-    console.log(usuario);
     return this.http.post<Usuario>(this.urlEndPoint,usuario)
   }
 
   updateUsuario(usuario: Usuario):Observable<Usuario>{
-    console.log(usuario);
     return this.http.put<Usuario>(this.urlEndPoint,usuario)
   }
 

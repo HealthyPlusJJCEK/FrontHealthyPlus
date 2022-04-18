@@ -105,7 +105,6 @@ export class EditarconsultaComponent implements OnInit {
         duration: 1 * 1000,
       });
     })
-    console.log(this.consulta)
   }
 
 }
